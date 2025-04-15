@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cute Messages & Wishes</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffeef8;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff69b4;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 4px #ffc0cb;
+    }
+
+    .card {
+      background: #fff0f5;
+      border: 2px dashed #ffa6c9;
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      max-width: 500px;
+      margin: 1rem;
+      box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message {
+      font-size: 1.3rem;
+      color: #d63384;
+      line-height: 1.6;
+    }
+
+    button {
+      background: #ffb6c1;
+      border: none;
+      border-radius: 30px;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      color: white;
+      margin-top: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ff69b4;
+    }
+
+    /* Floating Hearts Animation */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 10s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1) rotate(45deg);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5) rotate(45deg);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      .message {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>😘Cute Msg for my Baby😘</h1>
+
+  <div id="messageCard" class="card">
+    <p class="message" id="messageText">Click below for a cute message!</p>
+  </div>
+
+  <button onclick="nextMessage()">Next Message 💌</button>
+
+  <!-- Floating Hearts -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+    }
+
+    const messages = [
+      "I love you Baby😘😘💕",
+      "You are so much special for me nd my heart🥰",
+      "you are my forever wla pyaar 💗 ",
+      "I love the bond between us😘💕",
+      "💕Hmra aha sange badd nikk lgai yaee💕",
+      "Ahhaa hmr sabse nikk choice chhi 💗💗",
+      "hmra aha sange maithli baje me badd nikk lgai yae😌🫂",
+      "hm dunu hmesa sath rhab ta aur uttam baat bha jetai🥹💕",
+      "Thiik chhai hm kosis krab aha sange kono ldai nai kreke😗😗",
+      "Thankyou hmesa mera sath dene ke liye❤💫"
+    ];
+
+    let index = 0;
+
+    function nextMessage() {
+      const card = document.getElementById('messageCard');
+      const text = document.getElementById('messageText');
+
+      // Fade out current
+      card.classList.remove('show');
+
+      setTimeout(() => {
+        // Change message
+        text.textContent = messages[index];
+        index = (index + 1) % messages.length;
+
+        // Fade in new
+        card.classList.add('show');
+      }, 300);
+    }
+
+    // Initialize first message with fade
+    setTimeout(() => {
+      document.getElementById('messageCard').classList.add('show');
+    }, 500);
+  </script>
+
+</body>
+</html>
